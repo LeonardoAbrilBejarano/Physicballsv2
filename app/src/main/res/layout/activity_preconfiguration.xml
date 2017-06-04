@@ -8,6 +8,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@drawable/background"
     tools:context="com.example.leonardo.physicballsv2.Preconfiguration">
 
     <LinearLayout
@@ -15,8 +16,9 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:weightSum="3"
             android:orientation="horizontal">
             <LinearLayout
                 android:layout_width="match_parent"
@@ -26,14 +28,17 @@
                 >
                 <TextView
                     android:id="@+id/tv"
-                    android:layout_width="wrap_content"
+                    android:textColor="@color/colorAccent"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textAlignment="center"
                     android:textSize="15dp"
-                    android:text="Selecciona el numero de pantallas"
+                    android:text="Pantallas"
                     />
                 <NumberPicker
                     android:id="@+id/np"
-                    android:layout_width="wrap_content"
+                    android:textColor="@color/colorAccent"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/tv"
                     />
@@ -46,14 +51,17 @@
                 >
                 <TextView
                     android:id="@+id/tv2"
-                    android:layout_width="wrap_content"
+                    android:textColor="@color/colorAccent"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textAlignment="center"
                     android:textSize="15dp"
-                    android:text="Selecciona el ancho de la plantilla (X MAX)"
+                    android:text="Anchura"
                     />
                 <NumberPicker
                     android:id="@+id/np2"
-                    android:layout_width="wrap_content"
+                    android:textColor="@color/colorAccent"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/tv"
                     />
@@ -66,14 +74,17 @@
                 >
                 <TextView
                     android:id="@+id/tv3"
-                    android:layout_width="wrap_content"
+                    android:textColor="@color/colorAccent"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="15dp"
-                    android:text="Selecciona el largo de la plantilla (Y MAX)"
+                    android:textAlignment="center"
+                    android:text="Altura"
                     />
                 <NumberPicker
                     android:id="@+id/np3"
-                    android:layout_width="wrap_content"
+                    android:textColor="@color/colorAccent"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/tv"
                     />

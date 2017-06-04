@@ -48,10 +48,10 @@ public class MainActivity extends AppCompatActivity {
 
     public void searchServer() throws ExecutionException, InterruptedException {
 
+
                 HttpRequester hr = new HttpRequester();
                 hr.setOption(1);
-                try {
-                    hr.execute().get();
+                try {hr.execute().get();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 } catch (ExecutionException e) {

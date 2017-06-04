@@ -27,7 +27,7 @@ public class EscenarioAdapter extends ArrayAdapter<Escenario> {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_escenario, parent, false);
         //}
         // Lookup view for data population
-        TextView tvName = (TextView) convertView.findViewById(R.id.escenariotitle);
+        TextView tvName = (TextView) convertView.findViewById(R.id.tv1);
         // Populate the data into the template view using the data object
         tvName.setText(user.getTitulo());
         // Return the completed view to render on screen

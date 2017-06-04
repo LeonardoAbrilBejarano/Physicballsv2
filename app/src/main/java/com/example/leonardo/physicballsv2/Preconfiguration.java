@@ -1,16 +1,20 @@
 package com.example.leonardo.physicballsv2;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.NumberPicker;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 
 public class Preconfiguration extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
@@ -31,11 +35,12 @@ public class Preconfiguration extends AppCompatActivity implements AdapterView.O
         Spinner spinner = (Spinner) findViewById(R.id.escenariospinner);
         // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter spinnerArrayAdapter = new ArrayAdapter(this,
-                android.R.layout.simple_spinner_dropdown_item,
+                R.layout.item_escenario,
                 scenarios);
         spinner.setAdapter(spinnerArrayAdapter);
         spinner.setOnItemSelectedListener(this);
         NumberPicker np = (NumberPicker) findViewById(R.id.np);
+        setNumberPickerTextColor(np, Color.CYAN);
         np.setMinValue(0);
         //Specify the maximum value/number of NumberPicker
         np.setMaxValue(999);
@@ -52,6 +57,7 @@ public class Preconfiguration extends AppCompatActivity implements AdapterView.O
             }
         });
         NumberPicker np2 = (NumberPicker) findViewById(R.id.np2);
+        setNumberPickerTextColor(np2, Color.CYAN);
         np2.setMinValue(0);
         //Specify the maximum value/number of NumberPicker
         np2.setMaxValue(999);
@@ -68,6 +74,7 @@ public class Preconfiguration extends AppCompatActivity implements AdapterView.O
             }
         });
         NumberPicker np3 = (NumberPicker) findViewById(R.id.np3);
+        setNumberPickerTextColor(np3, Color.CYAN);
         np3.setMinValue(0);
         //Specify the maximum value/number of NumberPicker
         np3.setMaxValue(999);
@@ -138,5 +145,34 @@ public class Preconfiguration extends AppCompatActivity implements AdapterView.O
             Intent i = new Intent(Preconfiguration.this, Configuration.class);
             startActivity(i);
         }
+    }
+
+    public boolean setNumberPickerTextColor(NumberPicker numberPicker, int color)
+    {
+        final int count = numberPicker.getChildCount();
+        for(int i = 0; i < count; i++){
+            View child = numberPicker.getChildAt(i);
+            if(child instanceof EditText){
+                try{
+                    Field selectorWheelPaintField = numberPicker.getClass()
+                            .getDeclaredField("mSelectorWheelPaint");
+                    selectorWheelPaintField.setAccessible(true);
+                    ((Paint)selectorWheelPaintField.get(numberPicker)).setColor(color);
+                    ((EditText)child).setTextColor(color);
+                    numberPicker.invalidate();
+                    return true;
+                }
+                catch(NoSuchFieldException e){
+                    Log.w("setNumberPickerTextColor", e);
+                }
+                catch(IllegalAccessException e){
+                    Log.w("setNumberPickerTextColor", e);
+                }
+                catch(IllegalArgumentException e){
+                    Log.w("setNumberPickerTextColor", e);
+                }
+            }
+        }
+        return false;
     }
 }
